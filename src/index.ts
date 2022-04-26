@@ -2,8 +2,8 @@ import { User } from './models/User';
 
 const user = new User({ name: 'new User', age: 18 });
 
-user.events.on('change', () => {
-  document.body.style.backgroundColor = 'red';
+user.on('change', () => {
+  console.log('on');
 });
 
-user.events.trigger('change');
+user.trigger('change');
