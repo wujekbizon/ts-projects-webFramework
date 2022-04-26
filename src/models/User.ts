@@ -1,7 +1,10 @@
+import axios, { AxiosResponse } from 'axios';
+
 interface UserProps {
   // mark properties as optional
   name?: string;
   age?: number;
+  id?: number;
 }
 
 // create type alias
@@ -37,5 +40,12 @@ export class User {
     handlers.forEach((callback) => {
       callback();
     });
+  }
+  fetch(): void {
+    axios
+      .get(`http://localhost:3000/users/${this.get('id')}`)
+      .then((response: AxiosResponse): void => {
+        this.set(response.data);
+      });
   }
 }
