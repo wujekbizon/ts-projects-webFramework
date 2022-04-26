@@ -11,7 +11,6 @@ user.on('click', () => {
 user.on('change', () => {
   document.body.style.backgroundColor = 'red';
 });
-console.log(user);
 
 user.trigger('change');
 user.trigger('click');
