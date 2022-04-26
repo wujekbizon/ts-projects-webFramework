@@ -26,5 +26,16 @@ export class User {
     this.events[eventName] = handlers;
   }
 
-  trigger(eventName: string): void {}
+  trigger(eventName: string): void {
+    const handlers = this.events[eventName];
+    // check if handlers is define and if it is an array
+    if (!handlers || handlers.length === 0) {
+      return;
+    }
+
+    // if we got handlers with callbacks
+    handlers.forEach((callback) => {
+      callback();
+    });
+  }
 }
