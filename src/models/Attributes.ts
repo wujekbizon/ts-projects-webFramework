@@ -9,4 +9,8 @@ export class Attributes<T> {
   set(update: T): void {
     Object.assign(this.data, update);
   }
+  // method to return all data all once
+  getAll(): T {
+    return this.data;
+  }
 }
