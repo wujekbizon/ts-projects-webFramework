@@ -33,4 +33,11 @@ export class User {
   get get() {
     return this.attributes.get;
   }
+
+  // call set with update and simultaneously trigger 'change' event
+  // to tell other parts of application that something changed
+  set(update: UserProps): void {
+    this.attributes.set(update);
+    this.events.trigger('change');
+  }
 }
