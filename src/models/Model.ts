@@ -26,18 +26,10 @@ export class Model<T extends HasId> {
     private sync: Sync<T>
   ) {}
 
-  // reimplementation passthrough methods
-  get on() {
-    return this.events.on;
-  }
-
-  get trigger() {
-    return this.events.trigger;
-  }
-
-  get get() {
-    return this.attributes.get;
-  }
+  // shortened passthrough methods
+  on = this.events.on;
+  trigger = this.events.trigger;
+  get = this.attributes.get;
 
   // call set with update and simultaneously trigger 'change' event
   // to tell other parts of application that something changed
