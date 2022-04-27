@@ -1,9 +1,15 @@
 import { User } from './models/User';
 
-// const user = new User({ id: 1, name: 'newer name', age: 100 });
+const user = User.buildUser({ id: 3 });
 
-// user.on('save', () => {
-//   console.log(user);
-// });
+user.on('change', () => {
+  console.log(user);
+});
 
-// user.save();
+user.fetch();
+user.set({ name: 'Test Name2', age: 100 });
+
+user.on('save', () => {
+  console.log('User succesfully saved to db');
+});
+user.save();
