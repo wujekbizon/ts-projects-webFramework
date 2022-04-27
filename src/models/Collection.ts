@@ -20,7 +20,7 @@ export class Collection<T, K> {
       .get(this.rootUrl)
       .then((response: AxiosResponse) => {
         response.data.forEach((value: K) => {
-          // from Json data get back an instance of a model and
+          // from Json data should get back an instance of a model and
           // add into array of models
           this.models.push(this.deserialize(value));
         });
