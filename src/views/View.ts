@@ -2,11 +2,17 @@ import { Model } from '../models/Model';
 
 // generic constraints
 export abstract class View<T extends Model<K>, K> {
+  regions: { [key: string]: Element } = {};
+
   constructor(public parent: Element, public model: T) {
     this.bindModel();
   }
 
   abstract template(): string;
+
+  regionsMap(): { [key: string]: string } {
+    return {};
+  }
 
   eventsMap(): { [key: string]: () => void } {
     return {};
@@ -31,6 +37,18 @@ export abstract class View<T extends Model<K>, K> {
     }
   }
 
+  mapRegions(fragment: DocumentFragment): void {
+    const regionsMap = this.regionsMap();
+    for (let key in regionsMap) {
+      const selector = regionsMap[key];
+      const element = fragment.querySelector(selector);
+
+      if (element) {
+        this.regions[key] = element;
+      }
+    }
+  }
+
   render(): void {
     // empty out parent element
     this.parent.innerHTML = '';
@@ -39,6 +57,8 @@ export abstract class View<T extends Model<K>, K> {
     templateElement.innerHTML = this.template();
     // bind event
     this.bindEvents(templateElement.content);
+    this.mapRegions(templateElement.content);
+
     // append to parent element
     this.parent.append(templateElement.content);
   }
