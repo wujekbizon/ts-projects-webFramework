@@ -6,8 +6,8 @@ export class UserShow extends View<User, UserProps> {
     return `
     <div>
       <h1>User Detail</h1>
-      <h2>User Name: ${this.model.get('name')}</h2>
-      <p>$User Age: ${this.model.get('age')}</p>
+      <h3>User name: ${this.model.get('name')}</h3>
+      <p>User age: ${this.model.get('age')}</p>
     </div>
     `;
   }
