@@ -5,8 +5,11 @@ export class UserForm {
     return `
     <div>
       <h1>User Form</h1>
-      <label id="name">Name</label>
-      <input type="text" id="name" />
+      <form>
+        <label for="name">Name</label>
+        <input type="text" id="name" />
+        <button>Submit</button>
+      </form>
     </div>
   `;
   }
