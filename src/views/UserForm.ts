@@ -1,10 +1,13 @@
+import { User } from '../models/User';
+
 export class UserForm {
-  constructor(public parent: Element) {}
+  constructor(public parent: Element, public model: User) {}
 
   eventsMap(): { [key: string]: () => void } {
     return {
       'click:button': this.onButtonClick,
-      'mouseenter:h1': this.onHeaderHover,
+      'mouseover:h1': this.onHeaderHover,
+      'input:input': this.onInput,
     };
   }
 
@@ -16,10 +19,18 @@ export class UserForm {
     console.log('Hover over h1');
   }
 
+  onInput(): void {
+    const input = document.querySelector('input');
+    console.log(input.value);
+  }
+
   template(): string {
     return `
     <div>
       <h1>User Form</h1>
+      <div>User name:${this.model.get('name')} </div>
+      <div>User age:${this.model.get('age')} </div>
+      <br>
       <form>
         <label for="name">Name</label>
         <input type="text" id="name" />
